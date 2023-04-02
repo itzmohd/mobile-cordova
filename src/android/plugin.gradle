@@ -30,7 +30,7 @@ dependencies {
     implementation "com.jumio.android:mrz:${SDK_VERSION}"
     implementation "com.jumio.android:nfc:${SDK_VERSION}"
     implementation "com.jumio.android:barcode:${SDK_VERSION}"
-    implementation "com.jumio.android:barcode-mlkit:${SDK_VERSION}"
+    //implementation "com.jumio.android:barcode-mlkit:${SDK_VERSION}"
     implementation "com.jumio.android:iproov:${SDK_VERSION}"
     implementation "com.jumio.android:defaultui:${SDK_VERSION}"
     implementation "com.jumio.android:datadog:${SDK_VERSION}"
