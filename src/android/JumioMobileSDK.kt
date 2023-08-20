@@ -2,7 +2,9 @@ package com.jumio.mobilesdk
 
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.os.Build
 import android.util.Log
+import com.jumio.cordova.demo.R
 import com.jumio.defaultui.JumioActivity
 import com.jumio.sdk.JumioSDK
 import com.jumio.sdk.credentials.JumioCredentialCategory.FACE
@@ -68,12 +70,14 @@ class JumioMobileSDK : CordovaPlugin() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE) {
             data?.let {
-                val jumioResult = it.getSerializableExtra(JumioActivity.EXTRA_RESULT) as JumioResult?
-                if (jumioResult != null && jumioResult.isSuccess) {
-                    sendScanResult(jumioResult)
+                val jumioResult = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    it.getSerializableExtra(JumioActivity.EXTRA_RESULT, JumioResult::class.java)
                 } else {
-                    sendCancelResult(jumioResult)
+                    @Suppress("DEPRECATION")
+                    it.getSerializableExtra(JumioActivity.EXTRA_RESULT) as JumioResult?
                 }
+
+                if (jumioResult?.isSuccess == true) sendScanResult(jumioResult) else sendCancelResult(jumioResult)
             }
         }
     }
@@ -103,7 +107,7 @@ class JumioMobileSDK : CordovaPlugin() {
             putExtra(JumioActivity.EXTRA_DATACENTER, dataCenter)
 
             //The following intent extra can be used to customize the Theme of Default UI
-            //putExtra(JumioActivity.EXTRA_CUSTOM_THEME, R.style.AppThemeCustomJumio)
+            putExtra(JumioActivity.EXTRA_CUSTOM_THEME, R.style.AppThemeCustomJumio)
         }
 
         cordova.activity.startActivityForResult(intent, REQUEST_CODE)
@@ -130,9 +134,9 @@ class JumioMobileSDK : CordovaPlugin() {
         }
     }
 
-    private fun sendScanResult(jumioResult: JumioResult) {
-        val accountId = jumioResult.accountId
-        val credentialInfoList = jumioResult.credentialInfos
+    private fun sendScanResult(jumioResult: JumioResult?) {
+        val accountId = jumioResult?.accountId
+        val credentialInfoList = jumioResult?.credentialInfos
 
         val result = JSONObject()
         val credentialsArray = ArrayList<JSONObject>()
