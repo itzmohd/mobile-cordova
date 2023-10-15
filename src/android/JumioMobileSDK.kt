@@ -106,7 +106,7 @@ class JumioMobileSDK : CordovaPlugin() {
             putExtra(JumioActivity.EXTRA_DATACENTER, dataCenter)
 
             //The following intent extra can be used to customize the Theme of Default UI
-            //putExtra(JumioActivity.EXTRA_CUSTOM_THEME, R.style.AppThemeCustomJumio)
+            putExtra(JumioActivity.EXTRA_CUSTOM_THEME, cordova.activity.applicationContext.getResources().getIdentifier("AppThemeCustomJumio", "style", cordova.activity.applicationContext.getPackageName()))
         }
 
         cordova.activity.startActivityForResult(intent, REQUEST_CODE)
