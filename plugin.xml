@@ -7,7 +7,7 @@
     </js-module>
     <platform name="ios">
 	<hook type="before_plugin_install" src="hooks/mergepodfile.js" />
-	//<hook type="before_build" src="hooks/before_build_ios.js" />
+	/*<hook type="before_build" src="hooks/before_build_ios.js" />*/
         <config-file target="config.xml" parent="/*">
             <feature name="JumioMobileSDK">
                 <param name="ios-package" value="JumioMobileSDK"/>
