@@ -13,16 +13,6 @@ module.exports = function (ctx) {
         projectPodfile,
         path.join(ctx.opts.plugin.dir, "src", "ios", "Podfile")
     ];
-
-    // Read the Podfile
-    const podfileContent = fs.readFileSync(projectPodfile, 'utf8');
-    // Replace specific pod version for OneSignal
-    const updatedPodfileContent = podfileContent.replace(/pod 'OneSignal', '~> \d+\.\d+\.\d+'/g, "pod 'OneSignal', '~> 2.16.7'");
-
-    // Write back the updated Podfile content
-    fs.writeFileSync(projectPodfile, updatedPodfileContent, 'utf8');
-
-    console.log("Files writeFileSync successfully");
     
     mergeFiles(inputPathList, outputPath).then((status) => {
         if (status){
