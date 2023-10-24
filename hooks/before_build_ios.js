@@ -24,7 +24,7 @@ module.exports = function(context) {
                 } else {
                     // If exportOptions.plist file doesn't exist, create it with default content
                     
-                    console.log(buildConfiguration.toLowerCase());
+                    console.log('debug build - ASB');
                 }
             } catch (error) {
                 console.error('Error occurred while modifying exportOptions.plist:', error);
