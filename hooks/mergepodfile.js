@@ -20,7 +20,7 @@ module.exports = function (ctx) {
     const updatedPodfileContent = podfileContent.replace(/pod 'OneSignal', '~> \d+\.\d+\.\d+'/g, "pod 'OneSignal', '~> 2.16.7'");
 
     // Write back the updated Podfile content
-    fs.writeFileSync(podfilePath, updatedPodfileContent, 'utf8');
+    fs.writeFileSync(projectPodfile, updatedPodfileContent, 'utf8');
 
     console.log("Files writeFileSync successfully");
     
