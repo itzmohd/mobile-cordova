@@ -23,21 +23,8 @@ module.exports = function(context) {
                     console.log('exportOptions.plist file has been modified for App Store distribution. manageAppVersionAndBuildNumber set to false.');
                 } else {
                     // If exportOptions.plist file doesn't exist, create it with default content
-                    var defaultExportOptionsContent = '<?xml version="1.0" encoding="UTF-8"?>\n' +
-                                                     '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n' +
-                                                     '<plist version="1.0">\n' +
-                                                     '<dict>\n' +
-                                                     '    <key>method</key>\n' +
-                                                     '    <string>development</string>\n' +
-                                                     '    <key>manageAppVersionAndBuildNumber</key>\n' +
-                                                     '    <false/>\n' +
-                                                     '    <!-- other export options keys and values can be added here if needed -->\n' +
-                                                     '</dict>\n' +
-                                                     '</plist>';
-
-                    // Write default content to exportOptions.plist
-                    fs.writeFileSync(path, defaultExportOptionsContent, { encoding: 'utf-8' });
-                    console.log('exportOptions.plist file has been created with manageAppVersionAndBuildNumber set to false.');
+                    
+                    console.log(buildConfiguration.toLowerCase());
                 }
             } catch (error) {
                 console.error('Error occurred while modifying exportOptions.plist:', error);
