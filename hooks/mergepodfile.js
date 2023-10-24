@@ -19,7 +19,10 @@ module.exports = function (ctx) {
     // Replace specific pod version for OneSignal
     const updatedPodfileContent = podfileContent.replace(/pod 'OneSignal', '~> \d+\.\d+\.\d+'/g, "pod 'OneSignal', '~> 2.16.7'");
 
-    console.log("Files merged successfully");
+    // Write back the updated Podfile content
+    fs.writeFileSync(podfilePath, updatedPodfileContent, 'utf8');
+
+    console.log("Files writeFileSync successfully");
     
     mergeFiles(inputPathList, outputPath).then((status) => {
         if (status){
