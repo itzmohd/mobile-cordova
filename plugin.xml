@@ -51,7 +51,6 @@
     </platform>
 
     <platform name="android">
-	<hook type="after_prepare" src="hooks/post_prepare.js" />
         <config-file target="app/src/main/AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
             <uses-permission android:name="android.permission.INTERNET"/>
