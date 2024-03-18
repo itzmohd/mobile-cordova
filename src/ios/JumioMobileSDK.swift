@@ -357,9 +357,9 @@ extension JumioMobileSDK {
         }
 
         if let bubbleSelectionIconForeground = customizations["bubbleSelectionIconForeground"] as? [String: String?], let light = bubbleSelectionIconForeground["light"] as? String, let dark = bubbleSelectionIconForeground["dark"] as? String {
-            customTheme.selectionIconForeground = Jumio.Theme.Value(light: UIColor(hexString: light), dark: UIColor(hexString: dark))
+            customTheme.bubble.selectionIconForeground = Jumio.Theme.Value(light: UIColor(hexString: light), dark: UIColor(hexString: dark))
         } else if let bubbleSelectionIconForeground = customizations["bubbleSelectionIconForeground"] as? String {
-            customTheme.selectionIconForeground = Jumio.Theme.Value(UIColor(hexString: bubbleSelectionIconForeground))
+            customTheme.bubble.selectionIconForeground = Jumio.Theme.Value(UIColor(hexString: bubbleSelectionIconForeground))
         }
 
         // Loading, Error
@@ -500,9 +500,9 @@ extension JumioMobileSDK {
         }
 
         if let searchBubbleListItemSelected = customizations["searchBubbleListItemSelected"] as? [String: String?], let light = searchBubbleListItemSelected["light"] as? String, let dark = searchBubbleListItemSelected["dark"] as? String {
-            customTheme.searchBubble.backgroundSelected = Jumio.Theme.Value(light: UIColor(hexString: light), dark: UIColor(hexString: dark))
+            customTheme.searchBubble.listItemSelected = Jumio.Theme.Value(light: UIColor(hexString: light), dark: UIColor(hexString: dark))
         } else if let searchBubbleListItemSelected = customizations["searchBubbleListItemSelected"] as? String {
-            customTheme.searchBubble.backgroundSelected = Jumio.Theme.Value(UIColor(hexString: searchBubbleListItemSelected))
+            customTheme.searchBubble.listItemSelected = Jumio.Theme.Value(UIColor(hexString: searchBubbleListItemSelected))
         }
 
         // Confirmation
