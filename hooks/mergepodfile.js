@@ -1,41 +1,29 @@
 const mergeFiles = require('merge-files');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs').promises; // Using fs.promises for async file operations
 
-module.exports = function (ctx) {
+module.exports = async function (ctx) {
+    try {
+        console.log("Started merging pod files to add the post_install script");
+        const rootdir = ctx.opts.projectRoot;
+        const outputPath = path.join(ctx.opts.plugin.dir, "src", "ios", "mergedPodfile");
+        const projectPodfile = path.join(rootdir, "platforms", "ios", "Podfile");
+        const inputPathList = [
+            projectPodfile,
+            path.join(ctx.opts.plugin.dir, "src", "ios", "Podfile")
+        ];
 
-    console.log("Started merging pod files to add the post_install script");
-    var rootdir = ctx.opts.projectRoot;
-    var outputPath = path.join(ctx.opts.plugin.dir,
-    "src",
-    "ios",
-    "mergedPodfile")
-    var projectPodfile = path.join(rootdir,
-    "platforms",
-    "ios",
-    "Podfile");
+        // Merge files
+        await mergeFiles(inputPathList, outputPath);
 
-    var inputPathList = [
-        projectPodfile,
-        path.join(ctx.opts.plugin.dir,
-        "src",
-        "ios",
-        "Podfile")
-    ];
-    
-    mergeFiles(inputPathList, outputPath).then((status) => {
-        if (status){
-            console.log("Files merged successfully");
-        } else {
-            throw ("Error merging files");
-        }
-        //remove the old Podfile (To make it compatible with MABS)
-        fs.unlinkSync(projectPodfile);
-        try {
-            fs.copyFileSync(outputPath, projectPodfile, fs.constants.COPYFILE_FICLONE);
-            console.log("Ended merging pod files to add the post_install script");
-        } catch (err) {
-            console.error("Error occurred while copying file:", err);
-        }
-    });
-}
+        // Remove the old Podfile (To make it compatible with MABS)
+        await fs.unlink(projectPodfile);
+
+        // Copy the merged Podfile to the original location
+        await fs.copyFile(outputPath, projectPodfile);
+
+        console.log("Ended merging pod files to add the post_install script");
+    } catch (err) {
+        console.error("An error occurred:", err);
+    }
+};
