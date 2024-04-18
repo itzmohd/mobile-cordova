@@ -23,8 +23,11 @@ module.exports = function (ctx) {
 
         //remove the old Podfile (To make it compatible with MABS)
         fs.unlinkSync(projectPodfile);
-        fs.copyFileSync(outputPath, projectPodfile, fs.constants.COPYFILE_FICLONE_FORCE);
-        console.log("Ended merging pod files to add the post_install script");
+        fs.copyFileSync(outputPath, projectPodfile, fs.constants.COPYFILE_FICLONE, function(err){
+            if (err){
+                throw (err);
+            }
+            console.log("Ended merging pod files to add the post_install script");
         });
     });
 }
