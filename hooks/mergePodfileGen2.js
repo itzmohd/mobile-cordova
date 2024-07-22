@@ -14,18 +14,25 @@ module.exports = function(context) {
     const podfilePath = path.join(iosPlatformPath, 'Podfile');
     const hookScriptPath = path.join(context.opts.projectRoot, 'hooks', 'postInstallHook.rb');
 
-    if (fs.existsSync(podfilePath) && fs.existsSync(hookScriptPath)) {
-        let podfileContent = fs.readFileSync(podfilePath, 'utf8');
-        const hookScript = fs.readFileSync(hookScriptPath, 'utf8');
+    if (!fs.existsSync(hookScriptPath)) {
+        console.error('postInstallHook.rb not found.');
+        return;
+    }
 
-        if (!podfileContent.includes("post_install do |installer|")) {
-            podfileContent += '\n' + hookScript;
-            fs.writeFileSync(podfilePath, podfileContent, 'utf8');
-            console.log('Added post_install hook to Podfile');
-        } else {
-            console.log('post_install hook already exists in Podfile');
-        }
+    const hookScript = fs.readFileSync(hookScriptPath, 'utf8');
+
+    if (!fs.existsSync(podfilePath)) {
+        console.error('Podfile not found.');
+        return;
+    }
+
+    let podfileContent = fs.readFileSync(podfilePath, 'utf8');
+
+    if (!podfileContent.includes("post_install do |installer|")) {
+        podfileContent += '\n' + hookScript;
+        fs.writeFileSync(podfilePath, podfileContent, 'utf8');
+        console.log('Added post_install hook to Podfile');
     } else {
-        console.log('Podfile or postInstallHook.rb not found.');
+        console.log('post_install hook already exists in Podfile');
     }
 };
