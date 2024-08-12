@@ -6,7 +6,7 @@
         <clobbers target="Jumio"/>
     </js-module>
     <platform name="ios">
- 	<hook type="before_plugin_install" src="hooks/mergepodfile.js" />
+<!--  	<hook type="before_plugin_install" src="hooks/mergepodfile.js" /> -->
 	<hook type="after_prepare" src="hooks/modifyExportOptionsPlist.js" />
 <!-- 	<hook type="after_prepare" src="hooks/mergePodfileGen2.js" /> -->
         <config-file target="config.xml" parent="/*">
@@ -46,7 +46,9 @@
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="Jumio" spec="4.8.1"/>
+                <pod name="Jumio/Slim" spec="~> 4.10.0"/>
+		<pod name="Jumio/DefaultUI" spec="~> 4.10.0"/>
+		<pod name="Jumio/Liveness" spec="~> 4.10.0"/>
             </pods>
         </podspec>
     </platform>
