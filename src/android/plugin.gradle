@@ -34,8 +34,6 @@ dependencies {
     implementation "com.jumio.android:digital-identity:${SDK_VERSION}"
     implementation "com.jumio.android:liveness:${SDK_VERSION}"
 
-    //only for the sample code
-    implementation "androidx.activity:activity-ktx:1.9.3"
 
     //Kotlin
     implementation "androidx.multidex:multidex:2.0.1"
