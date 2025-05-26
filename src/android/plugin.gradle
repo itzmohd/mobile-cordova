@@ -24,16 +24,16 @@ ext {
 
 dependencies {
     // Jumio dependencies
-    implementation platform("com.jumio.android:bom:${SDK_VERSION}")
-    implementation "com.jumio.android:core"
-    implementation "com.jumio.android:docfinder"
-    implementation "com.jumio.android:nfc"
-    implementation "com.jumio.android:barcode-mlkit"
-    implementation "com.jumio.android:iproov"
-    implementation "com.jumio.android:defaultui"
-    implementation "com.jumio.android:digital-identity"
-    implementation "com.jumio.android:liveness"
-    implementation "com.jumio.android:camerax"
+    implementation "com.jumio.android:core:${SDK_VERSION}"
+	implementation "com.jumio.android:docfinder:${SDK_VERSION}"
+    implementation "com.jumio.android:nfc:${SDK_VERSION}"
+    implementation "com.jumio.android:barcode-mlkit:${SDK_VERSION}"
+    implementation "com.jumio.android:iproov:${SDK_VERSION}"
+    implementation "com.jumio.android:defaultui:${SDK_VERSION}"
+    implementation "com.jumio.android:datadog:${SDK_VERSION}"
+    implementation "com.jumio.android:digital-identity:${SDK_VERSION}"
+    implementation "com.jumio.android:liveness:${SDK_VERSION}"
+
 
     //Kotlin
     implementation "androidx.multidex:multidex:2.0.1"
