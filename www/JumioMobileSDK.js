@@ -14,17 +14,25 @@ var exec = require('cordova/exec');
  * @constructor
  */
 function Jumio () {
-	this.initialize = function(authorizationToken, datacenter) {
-    	exec(function(success) { console.log("Jumio::init Success: " + success) },
-            function(error) { alert(JSON.stringify(error)) },
-    		"JumioMobileSDK",
-    		"initialize",
-    		[authorizationToken, datacenter]);
+	this.initialize = function(authorizationToken, datacenter, success, error) {
+        exec(success, error, "JumioMobileSDK", "initialize", [authorizationToken, datacenter]);
     };
 	
 	this.start = function(success, error, customizations) {
 		exec(success, error, "JumioMobileSDK", "start", [customizations]);
 	};
+
+	this.setPreloaderFinishedBlock = function(success, error) {
+        exec(success, error, "JumioMobileSDK", "setPreloaderFinishedBlock", []);
+    };
+
+    this.preloadIfNeeded = function(success, error) {
+        exec(success, error, "JumioMobileSDK", "preloadIfNeeded", []);
+    };
+
+    this.getCachedResult = function(success, error) {
+        exec(success, error, "JumioMobileSDK", "getCachedResult", []);
+    };
 }
 
 // /**
