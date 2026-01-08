@@ -6,9 +6,6 @@
         <clobbers target="Jumio"/>
     </js-module>
     <platform name="ios">
-<!--  	<hook type="before_plugin_install" src="hooks/mergepodfile.js" /> -->
-	<hook type="after_build" src="hooks/modifyExportOptionsPlist.js" />
-<!-- 	<hook type="after_prepare" src="hooks/mergePodfileGen2.js" /> -->
         <config-file target="config.xml" parent="/*">
             <feature name="JumioMobileSDK">
                 <param name="ios-package" value="JumioMobileSDK"/>
@@ -16,9 +13,9 @@
         </config-file>
         <header-file src="src/ios/JumioMobileSDK-Bridging-Header.h"/>
         <source-file src="src/ios/JumioMobileSDK.swift"/>
-	<header-file src="src/ios/AppDelegate+Deeplinking.h"/>
+        <header-file src="src/ios/AppDelegate+Deeplinking.h"/>
         <source-file src="src/ios/AppDelegate+Deeplinking.m"/>
-<!--         <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/> -->
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
 
         <preference name="CAMERA_USAGE_DESCRIPTION"
             default="This will allow ${PRODUCT_NAME} to take photos of your credentials."/>
@@ -46,9 +43,9 @@
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="Jumio/Slim" spec="~> 4.13.0"/>
-		<pod name="Jumio/DefaultUI" spec="~> 4.13.0"/>
-		<pod name="Jumio/Liveness" spec="~> 4.13.0"/>
+                <pod name="Jumio/Slim" spec="~> 4.15.0"/>
+				<pod name="Jumio/DefaultUI" spec="~> 4.15.0"/>
+				<pod name="Jumio/Liveness" spec="~> 4.15.0"/>
             </pods>
         </podspec>
     </platform>
