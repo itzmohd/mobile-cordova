@@ -17,6 +17,13 @@ repositories {
     }
 }
 
+android {
+	packagingOptions {
+		it.excludes.add("lib/x86_64/libtensorflowlite_jni.so")
+		it.excludes.add("lib/x86/libtensorflowlite_jni.so")
+	}
+}
+
 ext {
     SDK_VERSION = "4.15.0"
     kotlin_version = "2.0.0"
@@ -35,11 +42,11 @@ dependencies {
     implementation "com.jumio.android:liveness"
     implementation "com.jumio.android:camerax"
 
-    implementation ("com.jumio.android:docfinder:4.14.0") {
+    implementation ("com.jumio.android:docfinder:*") {
 	exclude group: 'com.google.ai.edge.litert', module: 'litert'
 	exclude group: 'com.google.ai.edge.litert', module: 'litert-metadata'
     }
-    implementation ("com.jumio.android:liveness:4.14.0") {
+    implementation ("com.jumio.android:liveness:*") {
     	exclude group: 'com.google.ai.edge.litert', module: 'litert'
     }
     implementation 'com.google.ai.edge.litert:litert:1.4.0'
