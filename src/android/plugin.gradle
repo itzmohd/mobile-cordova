@@ -35,6 +35,16 @@ dependencies {
     implementation "com.jumio.android:liveness"
     implementation "com.jumio.android:camerax"
 
+    implementation ("com.jumio.android:docfinder:4.14.0") {
+	exclude group: 'com.google.ai.edge.litert', module: 'litert'
+	exclude group: 'com.google.ai.edge.litert', module: 'litert-metadata'
+    }
+    implementation ("com.jumio.android:liveness:4.14.0") {
+    	exclude group: 'com.google.ai.edge.litert', module: 'litert'
+    }
+    implementation 'com.google.ai.edge.litert:litert:1.4.0'
+    implementation 'com.google.ai.edge.litert:litert-support:1.4.0'
+
     //only for the sample code
     //implementation "androidx.activity:activity-ktx:1.10.1"
 
